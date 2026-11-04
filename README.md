@@ -1,1 +1,1 @@
-simple sns website made with node and mongodb
+simple fullstack sns website made with node and mongodb
