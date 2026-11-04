@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Untitled SNS</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Login / registration view: shown when no session exists -->
+  <section id="auth-view" class="auth" hidden>
+    <div class="auth-card">
+      <h1 class="logo">Untitled SNS</h1>
+      <p class="tagline">Share your photos with the people you follow.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-form="login-form" role="tab">Log in</button>
+        <button class="tab" data-form="register-form" role="tab">Sign up</button>
+      </div>
+
+      <form id="login-form" class="form">
+        <label>Username <input name="username" required autocomplete="username"></label>
+        <label>Password <input name="password" type="password" required autocomplete="current-password"></label>
+        <button class="btn primary" type="submit">Log in</button>
+      </form>
+
+      <form id="register-form" class="form" hidden>
+        <label>Username <input name="username" required minlength="3" autocomplete="username"></label>
+        <label>Email <input name="email" type="email" required autocomplete="email"></label>
+        <label>Password <input name="password" type="password" required minlength="6" autocomplete="new-password"></label>
+        <button class="btn primary" type="submit">Create account</button>
+      </form>
+
+      <p id="auth-message" class="message" role="alert"></p>
+    </div>
+  </section>
+
+  <!-- Main application view: shown once logged in -->
+  <section id="app-view" hidden>
+    <header class="topbar">
+      <h1 class="logo">Untitled SNS</h1>
+      <form id="search-form" class="search">
+        <select id="search-type" aria-label="Search type">
+          <option value="contents">Photos</option>
+          <option value="users">People</option>
+        </select>
+        <input id="search-input" type="search" placeholder="Search" required>
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <nav class="nav">
+        <button id="nav-feed" class="btn link">Feed</button>
+        <button id="profile-btn" class="btn link"></button>
+        <button id="logout-btn" class="btn link">Log out</button>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <!-- New post form -->
+      <form id="post-form" class="card composer">
+        <textarea name="text" rows="2" placeholder="Write a caption" required></textarea>
+        <img id="preview" class="preview" alt="Selected photo preview" hidden>
+        <div class="row">
+          <label class="btn file-btn">Choose photo
+            <input id="photo-input" name="image" type="file" accept="image/*" hidden>
+          </label>
+          <button class="btn primary" type="submit">Post</button>
+        </div>
+      </form>
+
+      <section id="profile" class="card profile" hidden>
+        <label id="photo-label" class="profile-photo-wrap" title="Change profile photo">
+          <img id="profile-photo" alt="Profile photo">
+          <input id="profile-photo-input" type="file" accept="image/*" hidden>
+        </label>
+        <div>
+          <h2 id="profile-name"></h2>
+          <p class="muted"><strong id="profile-followers">0</strong> followers · <strong id="profile-following">0</strong> following</p>
+        </div>
+      </section> 
+
+      <h2 id="results-title" class="section-title">Your feed</h2>
+      <p id="status" class="message" role="alert"></p>
+      <div id="results"></div>
+    </main>
+  </section>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
